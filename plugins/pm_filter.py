@@ -708,7 +708,12 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"Here is what i found for your query00 {search}"
+        cap = f"↪️Requested:{search} 
+        👤Requested By:{userid = query.from_user.id}
+           Group: {grp_id = query.message.chat.id}
+            
+            \n📌 Press The Down Buttons To Access The File
+            📌 This Post Will Be Deleted After 10 Minutes"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],

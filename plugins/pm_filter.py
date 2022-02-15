@@ -708,7 +708,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"↪️Requested: {search} \n📌 Press The Down Buttons To Access The File \n📌 This Post Will Be Deleted After 10 Minutes "
+        cap = f"↪️Requested: {search} \n req = message.from_user.id \n📌 Press The Down Buttons To Access The File \n📌 This Post Will Be Deleted After 10 Minutes "
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
@@ -723,7 +723,8 @@ async def auto_filter(client, msg, spoll=False):
     else:
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
-        await msg.message.delete(10)
+        await asyncio.sleep(10)
+        await msg.message.delete()
 
 
 async def advantage_spell_chok(msg):

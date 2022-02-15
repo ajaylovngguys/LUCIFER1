@@ -709,10 +709,7 @@ async def auto_filter(client, msg, spoll=False):
         )
     else:
         cap = f"↪️Requested:{search} 
-        👤Requested By:{userid = query.from_user.id}
-           Group: {grp_id = query.message.chat.id}
-            
-            \n📌 Press The Down Buttons To Access The File
+        📌 Press The Down Buttons To Access The File
             📌 This Post Will Be Deleted After 10 Minutes"
     if imdb and imdb.get('poster'):
         try:
@@ -728,7 +725,7 @@ async def auto_filter(client, msg, spoll=False):
     else:
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
-        await msg.message.delete()
+        await msg.message.delete(10)
 
 
 async def advantage_spell_chok(msg):

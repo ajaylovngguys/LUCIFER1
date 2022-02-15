@@ -708,14 +708,14 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"↪️Requested: {search} \n req = message.from_user.id \n📌 Press The Down Buttons To Access The File \n📌 This Post Will Be Deleted After 10 Minutes "
+        cap = f"↪️Requested: {search} \n {group_id} \n {user_id}  \n📌 Press The Down Buttons To Access The File \n📌 This Post Will Be Deleted After 10 Minutes "
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
                                       reply_markup=InlineKeyboardMarkup(btn))
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            poster = pic.replace('https://telegra.ph/file/716aee0ad267b0727c700.jpg')
             await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
             logger.exception(e)
@@ -723,7 +723,6 @@ async def auto_filter(client, msg, spoll=False):
     else:
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
-        await asyncio.sleep(10)
         await msg.message.delete()
 
 
